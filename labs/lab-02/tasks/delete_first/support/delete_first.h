@@ -9,6 +9,6 @@
  * string @param s.
  * @return the modified string
  */
-char *delete_first(char *s, char *pattern);
+void *delete_first(char *s, char *pattern);
 
 #endif // DELETE_FIRST_H
