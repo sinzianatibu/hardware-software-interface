@@ -6,14 +6,13 @@
 
 #include "delete_first.h"
 
-char *delete_first(char *s, char *pattern)
+char* delete_first(char *s, char *pattern)
 {
-	/**
-	 * TODO: Implement this function
-	 */
+	char *p = strstr(s, pattern);
+	if(p) {
+		size_t pattern_len = strlen(pattern);
+		memcpy(p, p + pattern_len, strlen(p + pattern_len));
 
-	(void) s;
-	(void) pattern;
-
-	return NULL;
+	}
+	
 }
