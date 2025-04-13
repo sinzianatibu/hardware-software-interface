@@ -10,6 +10,23 @@ section .data
 section .text
 extern printf
 global main
+
 main:
-	; TODO: Implement the code to count negative and positive numbers in the array
+    mov ecx, ARRAY_SIZE     ; Use ecx as loop counter.
+    xor ebx, ebx            ; Store positive number in ebx.
+    xor edx, edx            ; Store negative number in edx.
+next_element:
+    mov eax, dword [dword_array + ecx*4 - 4]
+    cmp eax, 0
+    jl add_to_neg
+    inc ebx
+    jmp test_end
+add_to_neg:
+    inc edx
+test_end:
+    loop next_element ; Decrement ecx, if not zero, go to next element.
+
+    PRINTF32 `Num pos is %u, num neg is %u\n\x0`, ebx, edx
+
     ret
+
