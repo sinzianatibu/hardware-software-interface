@@ -13,6 +13,26 @@ extern printf
 global main
 main:
 
+	push ARRAY_LEN
+	push ARRAY_LEN
+	pop ebx
+	pop ecx
+push_elem:
+	dec ebx
+	push dword [input + 4 * ebx]
+	dec ecx
+	jnz push_elem
+
+	push ARRAY_LEN
+	push ARRAY_LEN
+	pop ebx
+	pop ecx
+pop_elem:
+	dec ebx
+	pop dword [input + 4 * ebx]
+	dec ebx
+	jnz pop_elem
+
     ; TODO push the elements of the array on the stack
     ; TODO retrieve the elements (pop) from the stack into the output array
 
