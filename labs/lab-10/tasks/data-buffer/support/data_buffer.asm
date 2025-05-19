@@ -16,7 +16,6 @@ section .data
     null_string: db 0
 
 section .text
-
 global main
 
 main:
