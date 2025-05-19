@@ -1,7 +1,7 @@
 ; SPDX-License-Identifier: BSD-3-Clause
 
 extern __libc_start_main
-extern my_main
+extern main
 
 section .text
 
