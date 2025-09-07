@@ -14,17 +14,34 @@ main:
     push ebp
     mov ebp, esp
 
-    ; TODO: calculate the sum of first N fibonacci numbers
-    ;       (f(0) = 0, f(1) = 1)
-    xor eax, eax     ;store the sum in eax
+    ; The calling convention requires saving and restoring `ebx` if modified
+    push ebx
 
-    ; Use the loop instruction
+    xor eax, eax     ;store the sum in eax
+    mov ecx, [N]
+    mov ebx, 0
+    mov edx, 1
+
+calc_fibo:
+    add eax, ebx
+    add ebx, edx
+    xchg ebx, edx
+    ; The `xhcg` above is equivalent to the following:
+    ; push eax
+    ; mov eax, ebx
+    ; mov ebx, edx
+    ; mov edx, eax
+    ; pop eax
+    loop calc_fibo
 
     push eax
     push dword [N]
     push sum_print_format
     call printf
     add esp, 12
+
+    ; Restore the `ebx` that was previously saved
+    pop ebx
 
     xor eax, eax
     leave
