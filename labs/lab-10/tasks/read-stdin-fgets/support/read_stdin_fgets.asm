@@ -9,7 +9,8 @@
 extern printf
 extern puts
 extern strlen
-extern gets
+extern fgets
+extern stdin
 
 
 section .data
@@ -48,8 +49,11 @@ main:
     ; TODO 2: Call fgets function instead of gets.
     ; HINT: fgets takes 3 arguments: buffer address, buffer size, and stdin.
     ; IMPORTANT: remember the order of arguments that have to be pushed.
+    lea ebx, [ebp-68]
+    push dword [stdin]
+    push 69
     push ebx
-    call gets
+    call fgets
     add esp, 4
 
     ; Push string length on the stack.
@@ -96,3 +100,7 @@ print_byte:
 
     leave
     ret
+
+
+section .note.GNU-stack noalloc noexec nowrite progbits
+
